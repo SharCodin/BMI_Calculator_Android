@@ -2,13 +2,22 @@ package com.ssharworks.basiccalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 public class MainActivity extends AppCompatActivity {
+
+    private AdView mAdView;
 
     private Button calculate;
     private Button metric;
@@ -20,11 +29,30 @@ public class MainActivity extends AppCompatActivity {
     private TextView bmi;
     private TextView unit;
 
+    private Button helpMenu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        helpMenu = (Button) findViewById(R.id.helpMenu);
+        helpMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHelpMenu();
+            }
+        });
 
         calculate = (Button) findViewById(R.id.calculate);
         metric = (Button) findViewById(R.id.metric);
@@ -83,5 +111,9 @@ public class MainActivity extends AppCompatActivity {
         };
         metric.setOnClickListener(unit_selected);
         imperial.setOnClickListener(unit_selected);
+    }
+    public void openHelpMenu() {
+        Intent intentHelpMenu = new Intent(this, HelpMenu.class);
+        startActivity(intentHelpMenu);
     }
 }
