@@ -1,2 +1,2 @@
-# BMI_Calculator_Android
+# BMI Calculator for Android
 A basic BMI calculator using Android Studio.
