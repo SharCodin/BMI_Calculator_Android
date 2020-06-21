@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Basic Calculator</string>
+    <string name="metric">METRIC</string>
+    <string name="body_weight_kg">Body Weight (kg)</string>
+    <string name="height_cm">Height (cm)</string>
+    <string name="bmi">BMI</string>
+    <string name="calculate">Calculate</string>
+    <string name="metric1">Metric</string>
+    <string name="imperial">Imperial</string>
+    <string name="result">result</string>
+</resources>
